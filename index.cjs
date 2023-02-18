@@ -1,4 +1,4 @@
-const sharp = require('sharp')
+// const sharp = require('sharp')
 
 // sharp('img.png')
 //     .raw()
@@ -50,36 +50,36 @@ const sharp = require('sharp')
 //         }
 //     })
 
-sharp('img.png')
-  .toBuffer()
-  .then((data) => {
-    const all = []
-    const pixels = sharp(data)
-      .metadata()
-      .then((metadata) => {
-        return sharp(data)
-          .raw()
-          .toBuffer({ resolveWithObject: true }) // Добавлено использование resolveWithObject
-          .then(({ data, info }) => {
-            const { width, height } = info;
-            for (let y = 0; y < height; y++) {
-              for (let x = 0; x < width; x++) {
-                const index = (y * width + x) * 3;
-                const r = data[index];
-                const g = data[index + 1];
-                const b = data[index + 2];
-                all.push({x, y, r, g, b})
-                // console.log(`Pixel at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
-              }
-            }
-            console.log(all.find((item) => {
-                if(item.r == 3 && item.g == 45 && item.b == 22) return true
-                return false
-            }))
-          });
-      });
-    return pixels;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// sharp('img.png')
+//   .toBuffer()
+//   .then((data) => {
+//     const all = []
+//     const pixels = sharp(data)
+//       .metadata()
+//       .then((metadata) => {
+//         return sharp(data)
+//           .raw()
+//           .toBuffer({ resolveWithObject: true }) // Добавлено использование resolveWithObject
+//           .then(({ data, info }) => {
+//             const { width, height } = info;
+//             for (let y = 0; y < height; y++) {
+//               for (let x = 0; x < width; x++) {
+//                 const index = (y * width + x) * 3;
+//                 const r = data[index];
+//                 const g = data[index + 1];
+//                 const b = data[index + 2];
+//                 all.push({x, y, r, g, b})
+//                 // console.log(`Pixel at (${x}, ${y}): RGB(${r}, ${g}, ${b})`);
+//               }
+//             }
+//             console.log(all.find((item) => {
+//                 if(item.r == 3 && item.g == 45 && item.b == 22) return true
+//                 return false
+//             }))
+//           });
+//       });
+//     return pixels;
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
